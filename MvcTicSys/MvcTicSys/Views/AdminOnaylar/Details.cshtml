@@ -1,0 +1,19 @@
+﻿@model MvcTicSys.Tbl_Onaylar
+
+@{
+    ViewBag.Title = "Details"; 
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<fieldset>
+    <legend>Onaylar</legend>
+
+    <div class="display-label">Onay Turu</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Onay)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Duzenle", "Edit", new { id=Model.OnayID }) |
+    @Html.ActionLink("Admin panaline Geri Donus Icin Tiklayiniz", "Index")
+</p>

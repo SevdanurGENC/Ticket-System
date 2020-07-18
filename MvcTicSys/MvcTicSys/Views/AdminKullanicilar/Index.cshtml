@@ -1,0 +1,68 @@
+﻿@model IEnumerable<MvcTicSys.Tbl_Kullanicilar>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+ 
+<p>
+    @Html.ActionLink("Yeni Kullanici Olusturmak Icin Tiklayiniz.", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            Yetki Durumu
+        </th>
+        <th>
+            Kullanici Adi
+        </th>
+        <th>
+            Sifre
+        </th>
+        <th>
+            Isim
+        </th>
+        <th>
+            Soyadi
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Telefon
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tbl_Yetkiler.Yetki)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KullaniciAdi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sifre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Isim)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Soyadi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telefon)
+        </td>
+        <td>
+            @Html.ActionLink("Duzenle", "Edit", new { id=item.KullaniciID }) |
+            @Html.ActionLink("Detay", "Details", new { id=item.KullaniciID }) |
+            @Html.ActionLink("Sil", "Delete", new { id=item.KullaniciID })
+        </td>
+    </tr>
+}
+
+</table>

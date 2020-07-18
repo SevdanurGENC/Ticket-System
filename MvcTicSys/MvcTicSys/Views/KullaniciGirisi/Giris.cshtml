@@ -1,0 +1,26 @@
+﻿@model MvcTicSys.Models.KullaniciGirisi
+           
+@{
+    ViewBag.Title = "Giris";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+ 
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true, "Girisiniz Hatalidir, Lutfen bilgilerinizi tekrar kontrol ediniz.");
+    <div>
+        <fieldset>
+            <legend>Kullanici Girisi</legend>
+            <div>@Html.LabelFor(u=>u.KullaniciAdi)</div>
+            <div>@Html.TextBoxFor(u=>u.KullaniciAdi)
+            @Html.ValidationMessageFor(u =>u.KullaniciAdi)</div>
+
+            <div>@Html.LabelFor(u=>u.Sifre)</div>
+            <div>@Html.PasswordFor(u=>u.Sifre)
+            @Html.ValidationMessageFor(u =>u.Sifre)</div>
+             
+             <input type="submit" value="Giris" />
+        </fieldset> 
+    </div>  
+          
+}

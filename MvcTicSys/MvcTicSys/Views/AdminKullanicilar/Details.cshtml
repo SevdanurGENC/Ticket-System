@@ -1,0 +1,49 @@
+﻿@model MvcTicSys.Tbl_Kullanicilar
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+ 
+<fieldset>
+    <legend>Kullanici Bilgileri</legend>
+
+    <div class="display-label">Yetki Durumu</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Tbl_Yetkiler.Yetki)
+    </div>
+
+    <div class="display-label">Kullanici Adi</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.KullaniciAdi)
+    </div>
+
+    <div class="display-label">Sifre</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Sifre)
+    </div>
+
+    <div class="display-label">Isim</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Isim)
+    </div>
+
+    <div class="display-label">Soyadi</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Soyadi)
+    </div>
+
+    <div class="display-label">Email</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Email)
+    </div>
+
+    <div class="display-label">Telefon</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Telefon)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Duzenle", "Edit", new { id=Model.KullaniciID }) |
+    @Html.ActionLink("Admin panaline Geri Donus Icin Tiklayiniz", "Index")
+</p>

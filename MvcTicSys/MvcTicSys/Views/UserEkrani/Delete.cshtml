@@ -1,0 +1,48 @@
+﻿@model MvcTicSys.Tbl_Sikayetler
+
+@{
+    ViewBag.Title = "Delete";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+ 
+<h3>Bu kaydinizi silmek istediginizden eminmisiniz?</h3>
+<fieldset>
+    <legend>Dilek Ve Sikayetler</legend>
+
+    <div class="display-label">Kullanici Isminiz</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Tbl_Kullanicilar.KullaniciAdi)
+    </div>
+
+    <div class="display-label">Sikayet Konusu</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SikayetKonu)
+    </div>
+
+    <div class="display-label">Sikayet Mesaji</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SikayetMesaj)
+    </div>
+
+    <div class="display-label">Tarih</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Tarih)
+    </div>
+
+    <div class="display-label">Onay Durumu</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Tbl_Onaylar.Onay)
+    </div>
+
+    <div class="display-label">Onay Mesaji</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.OnayMesaji)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Sil" /> |
+        @Html.ActionLink("Sikayetler Sayfasina Geri Donus Icin Tiklayiniz.", "Index")
+    </p>
+}

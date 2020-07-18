@@ -1,0 +1,64 @@
+﻿@model IEnumerable<MvcTicSys.Tbl_Sikayetler>
+
+@{
+    ViewBag.Title = "Index";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+ 
+<p>
+    @Html.ActionLink("Yeni Dilek Ve Sikayet Girisi Icin Tiklayiniz.", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            Kullanici Ismi
+        </th>
+        <th>
+            Sikayet Konusu
+        </th>
+        <th>
+            Sikayet Mesaji
+        </th>
+        <th>
+            Tarih
+        </th>
+        <th>
+            Onay Durumu
+        </th>
+        <th>
+            Onay Mesaji
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+        
+            @Html.DisplayFor(modelItem => item.Tbl_Kullanicilar.KullaniciAdi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SikayetKonu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SikayetMesaj)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tarih)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tbl_Onaylar.Onay)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OnayMesaji)
+        </td>
+        <td>
+            @Html.ActionLink("Duzenle", "Edit", new { id=item.SikayetID }) |
+            @Html.ActionLink("Detay", "Details", new { id=item.SikayetID }) |
+            @Html.ActionLink("Sil", "Delete", new { id=item.SikayetID })
+        </td>
+    </tr>
+}
+
+</table>

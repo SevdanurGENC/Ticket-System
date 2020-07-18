@@ -1,0 +1,22 @@
+﻿@model MvcTicSys.Tbl_Onaylar
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h3>Kaydi silmek istediginizden eminmisiniz?</h3>
+<fieldset>
+    <legend>Onaylar</legend>
+
+    <div class="display-label">Onay Turu</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Onay)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Sil" /> |
+        @Html.ActionLink("Admin panaline Geri Donus Icin Tiklayiniz", "Index")
+    </p>
+}
