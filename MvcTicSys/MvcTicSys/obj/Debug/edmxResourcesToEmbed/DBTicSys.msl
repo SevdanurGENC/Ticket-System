@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DBTicketSystemModelStoreContainer" CdmEntityContainer="DBTicketSystemEntities">
+    <EntitySetMapping Name="Tbl_Kullanicilar">
+      <EntityTypeMapping TypeName="DBTicketSystemModel.Tbl_Kullanicilar">
+        <MappingFragment StoreEntitySet="Tbl_Kullanicilar">
+          <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
+          <ScalarProperty Name="YetkiID" ColumnName="YetkiID" />
+          <ScalarProperty Name="KullaniciAdi" ColumnName="KullaniciAdi" />
+          <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+          <ScalarProperty Name="Isim" ColumnName="Isim" />
+          <ScalarProperty Name="Soyadi" ColumnName="Soyadi" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_Onaylar">
+      <EntityTypeMapping TypeName="DBTicketSystemModel.Tbl_Onaylar">
+        <MappingFragment StoreEntitySet="Tbl_Onaylar">
+          <ScalarProperty Name="OnayID" ColumnName="OnayID" />
+          <ScalarProperty Name="Onay" ColumnName="Onay" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_Sikayetler">
+      <EntityTypeMapping TypeName="DBTicketSystemModel.Tbl_Sikayetler">
+        <MappingFragment StoreEntitySet="Tbl_Sikayetler">
+          <ScalarProperty Name="SikayetID" ColumnName="SikayetID" />
+          <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
+          <ScalarProperty Name="SikayetKonu" ColumnName="SikayetKonu" />
+          <ScalarProperty Name="SikayetMesaj" ColumnName="SikayetMesaj" />
+          <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+          <ScalarProperty Name="Onay" ColumnName="Onay" />
+          <ScalarProperty Name="OnayMesaji" ColumnName="OnayMesaji" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_Yetkiler">
+      <EntityTypeMapping TypeName="DBTicketSystemModel.Tbl_Yetkiler">
+        <MappingFragment StoreEntitySet="Tbl_Yetkiler">
+          <ScalarProperty Name="YetkiKodu" ColumnName="YetkiKodu" />
+          <ScalarProperty Name="Yetki" ColumnName="Yetki" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

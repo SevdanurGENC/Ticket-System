@@ -1,0 +1,277 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DBTicketSystemModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="DBTicketSystemModelStoreContainer">
+          <EntitySet Name="Tbl_Kullanicilar" EntityType="DBTicketSystemModel.Store.Tbl_Kullanicilar" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tbl_Onaylar" EntityType="DBTicketSystemModel.Store.Tbl_Onaylar" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tbl_Sikayetler" EntityType="DBTicketSystemModel.Store.Tbl_Sikayetler" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tbl_Yetkiler" EntityType="DBTicketSystemModel.Store.Tbl_Yetkiler" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Tbl_Kullanicilar_Tbl_Yetkiler" Association="DBTicketSystemModel.Store.FK_Tbl_Kullanicilar_Tbl_Yetkiler">
+            <End Role="Tbl_Yetkiler" EntitySet="Tbl_Yetkiler" />
+            <End Role="Tbl_Kullanicilar" EntitySet="Tbl_Kullanicilar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Sikayetler_Tbl_Kullanicilar" Association="DBTicketSystemModel.Store.FK_Tbl_Sikayetler_Tbl_Kullanicilar">
+            <End Role="Tbl_Kullanicilar" EntitySet="Tbl_Kullanicilar" />
+            <End Role="Tbl_Sikayetler" EntitySet="Tbl_Sikayetler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Sikayetler_Tbl_Onaylar" Association="DBTicketSystemModel.Store.FK_Tbl_Sikayetler_Tbl_Onaylar">
+            <End Role="Tbl_Onaylar" EntitySet="Tbl_Onaylar" />
+            <End Role="Tbl_Sikayetler" EntitySet="Tbl_Sikayetler" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Tbl_Kullanicilar">
+          <Key>
+            <PropertyRef Name="KullaniciID" />
+          </Key>
+          <Property Name="KullaniciID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="YetkiID" Type="int" />
+          <Property Name="KullaniciAdi" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sifre" Type="nvarchar" MaxLength="50" />
+          <Property Name="Isim" Type="nvarchar" MaxLength="50" />
+          <Property Name="Soyadi" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Telefon" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tbl_Onaylar">
+          <Key>
+            <PropertyRef Name="OnayID" />
+          </Key>
+          <Property Name="OnayID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Onay" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tbl_Sikayetler">
+          <Key>
+            <PropertyRef Name="SikayetID" />
+          </Key>
+          <Property Name="SikayetID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="KullaniciID" Type="int" />
+          <Property Name="SikayetKonu" Type="nvarchar" MaxLength="100" />
+          <Property Name="SikayetMesaj" Type="nvarchar" MaxLength="300" />
+          <Property Name="Tarih" Type="datetime" />
+          <Property Name="Onay" Type="int" />
+          <Property Name="OnayMesaji" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="Tbl_Yetkiler">
+          <Key>
+            <PropertyRef Name="YetkiKodu" />
+          </Key>
+          <Property Name="YetkiKodu" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Yetki" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Tbl_Kullanicilar_Tbl_Yetkiler">
+          <End Role="Tbl_Yetkiler" Type="DBTicketSystemModel.Store.Tbl_Yetkiler" Multiplicity="0..1" />
+          <End Role="Tbl_Kullanicilar" Type="DBTicketSystemModel.Store.Tbl_Kullanicilar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Yetkiler">
+              <PropertyRef Name="YetkiKodu" />
+            </Principal>
+            <Dependent Role="Tbl_Kullanicilar">
+              <PropertyRef Name="YetkiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Sikayetler_Tbl_Kullanicilar">
+          <End Role="Tbl_Kullanicilar" Type="DBTicketSystemModel.Store.Tbl_Kullanicilar" Multiplicity="0..1" />
+          <End Role="Tbl_Sikayetler" Type="DBTicketSystemModel.Store.Tbl_Sikayetler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Kullanicilar">
+              <PropertyRef Name="KullaniciID" />
+            </Principal>
+            <Dependent Role="Tbl_Sikayetler">
+              <PropertyRef Name="KullaniciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Sikayetler_Tbl_Onaylar">
+          <End Role="Tbl_Onaylar" Type="DBTicketSystemModel.Store.Tbl_Onaylar" Multiplicity="0..1" />
+          <End Role="Tbl_Sikayetler" Type="DBTicketSystemModel.Store.Tbl_Sikayetler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Onaylar">
+              <PropertyRef Name="OnayID" />
+            </Principal>
+            <Dependent Role="Tbl_Sikayetler">
+              <PropertyRef Name="Onay" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBTicketSystemModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="DBTicketSystemEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Tbl_Kullanicilar" EntityType="DBTicketSystemModel.Tbl_Kullanicilar" />
+          <EntitySet Name="Tbl_Onaylar" EntityType="DBTicketSystemModel.Tbl_Onaylar" />
+          <EntitySet Name="Tbl_Sikayetler" EntityType="DBTicketSystemModel.Tbl_Sikayetler" />
+          <EntitySet Name="Tbl_Yetkiler" EntityType="DBTicketSystemModel.Tbl_Yetkiler" />
+          <AssociationSet Name="FK_Tbl_Kullanicilar_Tbl_Yetkiler" Association="DBTicketSystemModel.FK_Tbl_Kullanicilar_Tbl_Yetkiler">
+            <End Role="Tbl_Yetkiler" EntitySet="Tbl_Yetkiler" />
+            <End Role="Tbl_Kullanicilar" EntitySet="Tbl_Kullanicilar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Sikayetler_Tbl_Kullanicilar" Association="DBTicketSystemModel.FK_Tbl_Sikayetler_Tbl_Kullanicilar">
+            <End Role="Tbl_Kullanicilar" EntitySet="Tbl_Kullanicilar" />
+            <End Role="Tbl_Sikayetler" EntitySet="Tbl_Sikayetler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Sikayetler_Tbl_Onaylar" Association="DBTicketSystemModel.FK_Tbl_Sikayetler_Tbl_Onaylar">
+            <End Role="Tbl_Onaylar" EntitySet="Tbl_Onaylar" />
+            <End Role="Tbl_Sikayetler" EntitySet="Tbl_Sikayetler" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Tbl_Kullanicilar">
+          <Key>
+            <PropertyRef Name="KullaniciID" />
+          </Key>
+          <Property Name="KullaniciID" Type="Int32" Nullable="false" />
+          <Property Name="YetkiID" Type="Int32" />
+          <Property Name="KullaniciAdi" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Sifre" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Isim" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Soyadi" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Telefon" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Tbl_Yetkiler" Relationship="DBTicketSystemModel.FK_Tbl_Kullanicilar_Tbl_Yetkiler" FromRole="Tbl_Kullanicilar" ToRole="Tbl_Yetkiler" />
+          <NavigationProperty Name="Tbl_Sikayetler" Relationship="DBTicketSystemModel.FK_Tbl_Sikayetler_Tbl_Kullanicilar" FromRole="Tbl_Kullanicilar" ToRole="Tbl_Sikayetler" />
+        </EntityType>
+        <EntityType Name="Tbl_Onaylar">
+          <Key>
+            <PropertyRef Name="OnayID" />
+          </Key>
+          <Property Name="OnayID" Type="Int32" Nullable="false" />
+          <Property Name="Onay" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Tbl_Sikayetler" Relationship="DBTicketSystemModel.FK_Tbl_Sikayetler_Tbl_Onaylar" FromRole="Tbl_Onaylar" ToRole="Tbl_Sikayetler" />
+        </EntityType>
+        <EntityType Name="Tbl_Sikayetler">
+          <Key>
+            <PropertyRef Name="SikayetID" />
+          </Key>
+          <Property Name="SikayetID" Type="Int32" Nullable="false" />
+          <Property Name="KullaniciID" Type="Int32" />
+          <Property Name="SikayetKonu" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="SikayetMesaj" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
+          <Property Name="Tarih" Type="DateTime" />
+          <Property Name="Onay" Type="Int32" />
+          <Property Name="OnayMesaji" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Tbl_Kullanicilar" Relationship="DBTicketSystemModel.FK_Tbl_Sikayetler_Tbl_Kullanicilar" FromRole="Tbl_Sikayetler" ToRole="Tbl_Kullanicilar" />
+          <NavigationProperty Name="Tbl_Onaylar" Relationship="DBTicketSystemModel.FK_Tbl_Sikayetler_Tbl_Onaylar" FromRole="Tbl_Sikayetler" ToRole="Tbl_Onaylar" />
+        </EntityType>
+        <EntityType Name="Tbl_Yetkiler">
+          <Key>
+            <PropertyRef Name="YetkiKodu" />
+          </Key>
+          <Property Name="YetkiKodu" Type="Int32" Nullable="false" />
+          <Property Name="Yetki" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Tbl_Kullanicilar" Relationship="DBTicketSystemModel.FK_Tbl_Kullanicilar_Tbl_Yetkiler" FromRole="Tbl_Yetkiler" ToRole="Tbl_Kullanicilar" />
+        </EntityType>
+        <Association Name="FK_Tbl_Kullanicilar_Tbl_Yetkiler">
+          <End Role="Tbl_Yetkiler" Type="DBTicketSystemModel.Tbl_Yetkiler" Multiplicity="0..1" />
+          <End Role="Tbl_Kullanicilar" Type="DBTicketSystemModel.Tbl_Kullanicilar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Yetkiler">
+              <PropertyRef Name="YetkiKodu" />
+            </Principal>
+            <Dependent Role="Tbl_Kullanicilar">
+              <PropertyRef Name="YetkiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Sikayetler_Tbl_Kullanicilar">
+          <End Role="Tbl_Kullanicilar" Type="DBTicketSystemModel.Tbl_Kullanicilar" Multiplicity="0..1" />
+          <End Role="Tbl_Sikayetler" Type="DBTicketSystemModel.Tbl_Sikayetler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Kullanicilar">
+              <PropertyRef Name="KullaniciID" />
+            </Principal>
+            <Dependent Role="Tbl_Sikayetler">
+              <PropertyRef Name="KullaniciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Sikayetler_Tbl_Onaylar">
+          <End Role="Tbl_Onaylar" Type="DBTicketSystemModel.Tbl_Onaylar" Multiplicity="0..1" />
+          <End Role="Tbl_Sikayetler" Type="DBTicketSystemModel.Tbl_Sikayetler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Onaylar">
+              <PropertyRef Name="OnayID" />
+            </Principal>
+            <Dependent Role="Tbl_Sikayetler">
+              <PropertyRef Name="Onay" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBTicketSystemModelStoreContainer" CdmEntityContainer="DBTicketSystemEntities">
+          <EntitySetMapping Name="Tbl_Kullanicilar"><EntityTypeMapping TypeName="DBTicketSystemModel.Tbl_Kullanicilar"><MappingFragment StoreEntitySet="Tbl_Kullanicilar">
+            <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
+            <ScalarProperty Name="YetkiID" ColumnName="YetkiID" />
+            <ScalarProperty Name="KullaniciAdi" ColumnName="KullaniciAdi" />
+            <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+            <ScalarProperty Name="Isim" ColumnName="Isim" />
+            <ScalarProperty Name="Soyadi" ColumnName="Soyadi" />
+            <ScalarProperty Name="Email" ColumnName="Email" />
+            <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Onaylar"><EntityTypeMapping TypeName="DBTicketSystemModel.Tbl_Onaylar"><MappingFragment StoreEntitySet="Tbl_Onaylar">
+            <ScalarProperty Name="OnayID" ColumnName="OnayID" />
+            <ScalarProperty Name="Onay" ColumnName="Onay" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Sikayetler"><EntityTypeMapping TypeName="DBTicketSystemModel.Tbl_Sikayetler"><MappingFragment StoreEntitySet="Tbl_Sikayetler">
+            <ScalarProperty Name="SikayetID" ColumnName="SikayetID" />
+            <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
+            <ScalarProperty Name="SikayetKonu" ColumnName="SikayetKonu" />
+            <ScalarProperty Name="SikayetMesaj" ColumnName="SikayetMesaj" />
+            <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+            <ScalarProperty Name="Onay" ColumnName="Onay" />
+            <ScalarProperty Name="OnayMesaji" ColumnName="OnayMesaji" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Yetkiler"><EntityTypeMapping TypeName="DBTicketSystemModel.Tbl_Yetkiler"><MappingFragment StoreEntitySet="Tbl_Yetkiler">
+            <ScalarProperty Name="YetkiKodu" ColumnName="YetkiKodu" />
+            <ScalarProperty Name="Yetki" ColumnName="Yetki" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="DBTicSys">
+        <EntityTypeShape EntityType="DBTicketSystemModel.Tbl_Kullanicilar" Width="1.5" PointX="3" PointY="1" Height="2.9417936197916656" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBTicketSystemModel.Tbl_Onaylar" Width="1.5" PointX="7.5" PointY="1.625" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBTicketSystemModel.Tbl_Sikayetler" Width="1.5" PointX="5.25" PointY="1.125" Height="2.7494921874999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBTicketSystemModel.Tbl_Yetkiler" Width="1.5" PointX="0.75" PointY="1.625" Height="1.5956835937499996" IsExpanded="true" />
+        <AssociationConnector Association="DBTicketSystemModel.FK_Tbl_Kullanicilar_Tbl_Yetkiler" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="2.422841796875" />
+          <ConnectorPoint PointX="3" PointY="2.422841796875" />
+        </AssociationConnector>
+        <AssociationConnector Association="DBTicketSystemModel.FK_Tbl_Sikayetler_Tbl_Kullanicilar" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="2.49974609375" />
+          <ConnectorPoint PointX="5.25" PointY="2.49974609375" />
+        </AssociationConnector>
+        <AssociationConnector Association="DBTicketSystemModel.FK_Tbl_Sikayetler_Tbl_Onaylar" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.5" PointY="2.422841796875" />
+          <ConnectorPoint PointX="6.75" PointY="2.422841796875" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

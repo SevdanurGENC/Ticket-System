@@ -1,0 +1,7 @@
+c:\users\sevdanur\documents\visual studio 2010\Projects\MvcTicSys\MvcTicSys\bin\MvcTicSys.dll
+c:\users\sevdanur\documents\visual studio 2010\Projects\MvcTicSys\MvcTicSys\bin\MvcTicSys.pdb
+c:\users\sevdanur\documents\visual studio 2010\Projects\MvcTicSys\MvcTicSys\bin\EntityFramework.dll
+c:\users\sevdanur\documents\visual studio 2010\Projects\MvcTicSys\MvcTicSys\bin\EntityFramework.xml
+c:\users\sevdanur\documents\visual studio 2010\Projects\MvcTicSys\MvcTicSys\obj\Debug\ResolveAssemblyReference.cache
+c:\users\sevdanur\documents\visual studio 2010\Projects\MvcTicSys\MvcTicSys\obj\Debug\MvcTicSys.dll
+c:\users\sevdanur\documents\visual studio 2010\Projects\MvcTicSys\MvcTicSys\obj\Debug\MvcTicSys.pdb
